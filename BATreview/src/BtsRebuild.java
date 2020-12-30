@@ -138,5 +138,24 @@ public class BtsRebuild {
         printInOrder(head.left, height + 1, "^", len);
     }
 
+    public static void main(String[] args) {
+        int min = 0, max = 12, level = 4;
+        Node head = genarateRandomBST(min, max, level);
+        int[] pos = getBstPosArray(head);
+        printTree(head);
+        printTree(posArrayToBST(pos));
+        printTree(posArrayToBST2(pos));
+        System.out.println(isSameValueStructure(head, posArrayToBST(pos)));
+        System.out.println(isSameValueStructure(head, posArrayToBST2(pos)));
 
+        int testTimes = 5000000;
+        System.out.println("test begin, time time :" + testTimes);
+        for (int i = 0;i < testTimes; i++) {
+            head = genarateRandomBST(min, max, level);
+            pos = getBstPosArray(head);
+            if (!isSameValueStructure(head, posArrayToBST(pos)) || isSameValueStructure(head, posArrayToBST2(pos))){
+                System.out.println("test finish");
+            }
+        }
+    }
 }
