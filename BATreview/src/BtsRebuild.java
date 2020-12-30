@@ -65,4 +65,78 @@ public class BtsRebuild {
         head.right = process2(posArr, M+1, R-1);
         return head;
     }
+
+    //for test：怎么证明，我写的是对的
+    public static int[] getBstPosArray(Node head) {
+        ArrayList<Integer> posList = new ArrayList<>();
+        pos(head, posList);
+        int[] ans= new int[posList.size()];
+        for (int i = 0;i < ans.length; i++){
+            ans[i] = posList.get(i);
+        }
+        return ans;
+    }
+
+    public static  void pos(Node head, ArrayList<Integer> posList) {
+        if (head != null) {
+            pos(head.left, posList);
+            pos(head.right, posList);
+            posList.add(head.value);
+        }
+    }
+
+    public static Node genarateRandomBST(int min, int max, int N) {
+        if (min > max){
+            return null;
+        }
+        return createTree (min, max, 1, N);
+
+    }
+
+    public static Node createTree(int min, int max, int level, int N) {
+        if (min > max || level >N) {
+            return null;
+        }
+        Node head = new Node(random(min, max));
+        head.left = createTree(min, head.value -1, level+1, N);
+        head.right = createTree(head.value + 1, max,level + 1, N);
+        return head;
+    }
+
+    public static int random(int min, int max) {
+        return min + (int) (Math.random() * (max - min + 1));
+    }
+
+    public static boolean isSameValueStructure(Node head1, Node head2) {
+        if ((head1 == null && head2 != null) || (head1 != null && head2 == null)) {
+            return false;
+        }
+        if (head1 == null && head2 == null){
+            return true;
+        }
+        return head1.value == head2.value && isSameValueStructure(head1.left, head2.left)
+                && isSameValueStructure(head1.right, head2.right);
+    }
+
+    public static void printTree(Node head) {
+        System.out.println("Binary Tree");
+        printInOrder(head, 0, "H", 17);
+        System.out.println();
+    }
+
+    public static void printInOrder(Node head, int height,String to, int len) {
+        if (head == null){
+            return;
+        }
+        printInOrder(head.right, height+1, "v", len);
+        String val = to + head.value +to;
+        int lenM = val.length();
+        int lenL = (len - lenM) / 2;
+        int lenR = len - lenM -lenL;
+        val = getSpace(lenL) + val + getSpace(lenR);
+        System.out.println(getSpace(height + len) +val);
+        printInOrder(head.left, height + 1, "^", len);
+    }
+
+
 }
