@@ -18,7 +18,7 @@ public class BtsRebuild {
     //目前，我们在使用posArr[L...R]这些数字，建树
     //建出来的树，各个节点之间连接完毕，最后将头节点返回（普通返回）
     public static Node process1(int[] posArr, int L,int R){ //0.操作的范围是L-R，考虑使用范围作为条件
-        if (L > R) { //1.先判断有无效
+        if (L > R) { //1.先判断有无效11
             return null;
         }
         Node head = new Node (posArr[R]);
@@ -120,11 +120,11 @@ public class BtsRebuild {
 
     public static void printTree(Node head) {
         System.out.println("Binary Tree");
-        printInOrder(head, 0, "H", 17);
+        //printInOrder(head, 0, "H", 17);
         System.out.println();
     }
 
-    public static void printInOrder(Node head, int height,String to, int len) {
+    /*public static void printInOrder(Node head, int height,String to, int len) {
         if (head == null){
             return;
         }
@@ -136,7 +136,7 @@ public class BtsRebuild {
         val = getSpace(lenL) + val + getSpace(lenR);
         System.out.println(getSpace(height + len) +val);
         printInOrder(head.left, height + 1, "^", len);
-    }
+    }*/
 
     public static void main(String[] args) {
         int min = 0, max = 12, level = 4;
