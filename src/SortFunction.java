@@ -11,9 +11,10 @@ public class SortFunction {
     //1.归并排序test
     public void mergeSortTest(){
         MergeSort mergeSort = new MergeSort();
-        a = mergeSort.sort(a,0,a.length-1);
+        int[] b = a;
+        b = mergeSort.sort(a,0,a.length-1);
         for(int i=0; i<a.length; i++){
-            System.out.println(a[i]);
+            System.out.println(b[i]);
         }
     }
 
