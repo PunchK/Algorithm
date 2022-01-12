@@ -1,4 +1,3 @@
-
 public class SortFunction {
     int[] a = {8,4,5,7,1,3,6,2};
     public void chooseFunc(String sortFlag){
